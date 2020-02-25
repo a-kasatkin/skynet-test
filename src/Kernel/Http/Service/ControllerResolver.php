@@ -56,7 +56,7 @@ class ControllerResolver implements ControllerResolverInterface
             }
 
             throw new \Exception(
-                "Could not resolve controller \"{$controller}\"",
+                "Could not resolve controller '{$controller}'",
                 500
             );
         }
@@ -91,6 +91,13 @@ class ControllerResolver implements ControllerResolverInterface
             );
         }
 
-        return [new $class(), $method];
+        if (!isset($this->controllersCollection[$class])) {
+            throw new \InvalidArgumentException(
+                "Could not resolve controller '{$class}'",
+                500
+            );
+        }
+
+        return [$this->controllersCollection[$class], $method];
     }
 }

@@ -55,7 +55,7 @@ class UrlMatcher implements UrlMatcherInterface
         if (0 < count($allowedMethods)) {
             throw new \Exception(
                 sprintf(
-                    "No route found for \"%s %s\": Method Not Allowed (Allow: %s)",
+                    "No route found for '%s %s': Method Not Allowed (Allow: %s)",
                     $request->getMethod(),
                     $request->getPathInfo(),
                     implode(',', $allowedMethods)
@@ -64,7 +64,8 @@ class UrlMatcher implements UrlMatcherInterface
             );
         } else {
             throw new \Exception(
-                "Route for path \"{$request->getPathInfo()}\" not found", 404
+                "Route for path '{$request->getPathInfo()}' not found",
+                404
             );
         }
     }
